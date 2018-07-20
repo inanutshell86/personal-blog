@@ -21,3 +21,7 @@ Route::post('contact', 'PublicController@about')->name('contactPost');
 Auth::routes();
 
 Route::get('/dashboard', 'HomeController@index')->name('dashboard');
+
+Route::prefix('admin')->group(function() {
+    Route::get('/dashboard', 'AdminController@dashboard')->name('adminDashboard');
+});
