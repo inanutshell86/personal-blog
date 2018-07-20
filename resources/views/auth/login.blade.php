@@ -13,7 +13,7 @@
                     Login
                 </div>
 
-                <form method="POST" action="{{ route('login') }}" aria-label="{{ __('Login') }}">@csrf
+                <form method="POST" action="{{ route('login') }}">@csrf
                     <div class="card-body py-5">
                         <div class="form-group">
                             <label class="form-control-label">Email</label>
