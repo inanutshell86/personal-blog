@@ -49,4 +49,29 @@ class AuthorController extends Controller
 
         return back()->with('success', 'Post is successfully created.');
     }
+
+    public function editPost($id)
+    {
+        $post = Post::where('id', $id)->where('user_id', Auth::id())->first();
+
+        return view('author.editPost', compact('post'));
+    }
+
+    public function postEditPost(CreatePost $request, $id)
+    {
+        $post = Post::where('id', $id)->where('user_id', Auth::id())->first();
+        $post->title = $request['title'];
+        $post->content = $request['content'];
+        $post->save();
+
+        return back()->with('success', "Post has been updated successfully.");
+    }
+
+    public function removePost($id)
+    {
+        $post = Post::where('id', $id)->where('user_id', Auth::id())->first();
+        $post->delete();
+
+        return back();
+    }
 }

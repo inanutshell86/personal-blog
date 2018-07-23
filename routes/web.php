@@ -41,6 +41,9 @@ Route::prefix('author')->group(function() {
     Route::get('comments', 'AuthorController@comments')->name('authorComments');
     Route::get('posts/new', 'AuthorController@newPost')->name('authorNewPost');
     Route::post('posts/new', 'AuthorController@createPost')->name('authorCreatePost');
+    Route::get('post/{id}/edit', 'AuthorController@editPost')->name('authorEditPost');
+    Route::post('post/{id}/edit', 'AuthorController@postEditPost')->name('authorPostEditPost');
+    Route::post('post/{id}/remove', 'AuthorController@removePost')->name('authorRemovePost');
 
 });
 
