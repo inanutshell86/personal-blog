@@ -1,1 +1,1 @@
-admin comments
+@extends('layouts.admin')
