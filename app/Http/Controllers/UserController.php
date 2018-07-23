@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\UserUpdate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Comment;
 
 class UserController extends Controller
 {
@@ -30,6 +31,13 @@ class UserController extends Controller
         $user->name = $request['name'];
         $user->email = $request['email'];
         $user->save();
+
+        return back();
+    }
+
+    public function deleteComment($id)
+    {
+        $comment = Comment::where('id', $id)->where('user_id', Auth::id())->delete();
 
         return back();
     }
