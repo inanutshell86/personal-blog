@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Comment;
 use App\Http\Requests\CreatePost;
 use App\Post;
 use Illuminate\Http\Request;
@@ -20,7 +21,8 @@ class AdminController extends Controller
 
     public function comments()
     {
-        return view('admin.comments');
+        $comments = Comment::all();
+        return view('admin.comments', compact('comments'));
     }
 
     public function posts()
@@ -54,6 +56,14 @@ class AdminController extends Controller
     {
         $post = Post::where('id', $id)->first();
         $post->delete();
+
+        return back();
+    }
+
+    public function removeComment($id)
+    {
+        $comment = Comment::where('id', $id)->first();
+        $comment->delete();
 
         return back();
     }
