@@ -15,7 +15,7 @@
                 </a>
             </li>
 
-            @if(Auth::user()->auth == true)
+            @if(Auth::user()->author == true)
             <li class="nav-title">Author</li>
 
             <li class="nav-item nav-dropdown">
