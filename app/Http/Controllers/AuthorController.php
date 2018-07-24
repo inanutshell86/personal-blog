@@ -31,7 +31,10 @@ class AuthorController extends Controller
 
     public function comments()
     {
-        return view('author.comments');
+        $posts = Post::where('user_id', Auth::id())->pluck('id')->toArray();
+        $comments = Comment::whereIn('post_id', $posts)->get();
+
+        return view('author.comments', compact('comments'));
     }
 
     public function newPost()
