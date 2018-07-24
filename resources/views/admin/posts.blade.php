@@ -33,9 +33,9 @@
                                 <td>{{ \Carbon\Carbon::parse($post->updated_at)->diffForHumans() }}</td>
                                 <td>{{ $post->comments->count() }}</td>
                                 <td>
-                                    <a href="{{ route('adminEditPost', $post->id) }}" class="btn btn-info">Edit</a>
-                                    <form action="{{ route('adminRemovePost', $post->id) }}" method="POST" id="removePost-{{ $post->id }}">@csrf</form>
-                                    <a href="#" class="btn btn-warning" onclick="document.getElementById('removePost-{{ $post->id }}').submit()">Remove</a>
+                                    <a href="{{ route('adminEditPost', $post->id) }}" class="btn btn-info"><i class="icon icon-pencil"></i></a>
+                                    <form style="display: none;" action="{{ route('adminRemovePost', $post->id) }}" method="POST" id="removePost-{{ $post->id }}">@csrf</form>
+                                    <a href="#" class="btn btn-warning" onclick="document.getElementById('removePost-{{ $post->id }}').submit()"><i class="icon icon-trash"></i></a>
                                 </td>
                             </tr>
                         @endforeach

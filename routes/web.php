@@ -56,4 +56,7 @@ Route::prefix('admin')->group(function() {
     Route::post('post/{id}/edit', 'AdminController@postEditPost')->name('adminPostEditPost');
     Route::post('post/{id}/remove', 'AdminController@removePost')->name('adminRemovePost');
     Route::post('comment/{id}/remove', 'AdminController@removeComment')->name('adminRemoveComment');
+    Route::get('user/{id}/edit', 'AdminController@editUser')->name('adminEditUser');
+    Route::post('user/{id}/edit', 'AdminController@editUserPost')->name('adminEditUserPost');
+    Route::post('user/{id}/remove', 'AdminController@removeUser')->name('adminRemoveUser');
 });

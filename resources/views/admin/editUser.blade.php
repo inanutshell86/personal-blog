@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title')
-    Editing {{ $post->title }}
+    Editing {{ $user->name }}
 @endsection
 
 @section('content')
@@ -11,7 +11,7 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header bg-light">
-                            Editing {{ $post->title }}
+                            Editing {{ $user->name }}
                         </div>
 
                         @if(Session::has('success'))
@@ -28,26 +28,31 @@
                             </div>
                         @endif
 
-                        <form action="{{ route('adminPostEditPost', $post->id) }}" method="POST">@csrf
+                        <form action="{{ route('adminEditUserPost', $user->id) }}" method="POST">@csrf
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-md-8">
                                         <div class="form-group">
-                                            <label for="normal-input" class="form-control-label">Title</label>
-                                            <input id="normal-input" class="form-control" placeholder="Post title" name="title" value="{{ $post->title }}">
+                                            <label for="normal-input" class="form-control-label">Name</label>
+                                            <input id="normal-input" class="form-control" name="name" value="{{ $user->name }}">
                                         </div>
                                     </div>
-                                </div>
-
-                                <div class="row mt-4">
                                     <div class="col-md-8">
                                         <div class="form-group">
-                                            <label for="placeholder-input" class="form-control-label">Content</label>
-                                            <textarea id="" class="form-control" placeholder="Post content" cols="30" rows="10" name="content">{{ $post->content }}</textarea>
+                                            <label for="normal-input" class="form-control-label">Email</label>
+                                            <input id="normal-input" class="form-control" name="email" value="{{ $user->email }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="form-group">
+                                            <label for="normal-input" class="form-control-label">Author</label>
+                                            <input style="width: auto;" id="normal-input" type="checkbox" class="form-control" name="author" {{ $user->author == true ? 'checked' : '' }}>
+                                            <label for="normal-input" class="form-control-label">Admin</label>
+                                            <input style="width: auto;" id="normal-input" type="checkbox" class="form-control" name="admin" {{ $user->admin == true ? 'checked' : '' }}>
                                         </div>
                                     </div>
                                 </div>
-                                <button class="btn btn-success" type="submit">Update post</button>
+                                <button class="btn btn-success" type="submit">Update user</button>
                             </div>
                         </form>
                     </div>

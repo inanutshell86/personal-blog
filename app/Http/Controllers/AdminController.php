@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Comment;
 use App\Http\Requests\CreatePost;
+use App\Http\Requests\UserUpdate;
 use App\Post;
+use App\User;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -33,7 +35,8 @@ class AdminController extends Controller
 
     public function users()
     {
-        return view('admin.users');
+        $users = User::all();
+        return view('admin.users', compact('users'));
     }
 
     public function editPost($id)
@@ -64,6 +67,38 @@ class AdminController extends Controller
     {
         $comment = Comment::where('id', $id)->first();
         $comment->delete();
+
+        return back();
+    }
+
+    public function editUser($id)
+    {
+        $user = User::where('id', $id)->first();
+
+        return view('admin.editUser', compact('user'));
+    }
+
+    public function editUserPost(UserUpdate $request, $id)
+    {
+        $user = User::where('id', $id)->first();
+        $user->name = $request['name'];
+        $user->email = $request['email'];
+
+        if ($request['author'] == 'on') {
+            $user->author = true;
+        } elseif ($request['admin'] == 'on') {
+            $user->admin = true;
+        }
+
+        $user->save();
+
+        return back()->with('success', "User has been updated successfully.");
+    }
+
+    public function removeUser($id)
+    {
+        $user = User::where('id', $id)->first();
+        $user->delete();
 
         return back();
     }
