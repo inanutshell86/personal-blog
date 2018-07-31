@@ -32,7 +32,7 @@ Route::prefix('user')->group(function() {
     Route::get('profile', 'UserController@profile')->name('userProfile');
     Route::post('profile', 'UserController@profilePost')->name('userProfilePost');
     Route::post('comment/{id}/delete', 'UserController@deleteComment')->name('userRemoveComment');
-
+    Route::post('new-comment', 'UserController@newComment')->name('userNewComment');
 });
 
 Route::prefix('author')->group(function() {
