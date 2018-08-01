@@ -60,3 +60,7 @@ Route::prefix('admin')->group(function() {
     Route::post('user/{id}/edit', 'AdminController@editUserPost')->name('adminEditUserPost');
     Route::post('user/{id}/remove', 'AdminController@removeUser')->name('adminRemoveUser');
 });
+
+Route::prefix('shop')->group(function() {
+    Route::get('/', 'ShopController@index')->name('shop.index');
+});
