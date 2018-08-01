@@ -7,6 +7,7 @@ use App\Comment;
 use App\Http\Requests\CreatePost;
 use App\Http\Requests\UserUpdate;
 use App\Post;
+use App\Product;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -124,5 +125,11 @@ class AdminController extends Controller
         $user->delete();
 
         return back();
+    }
+
+    public function products()
+    {
+        $products = Product::all();
+        return view('admin.products', compact('products'));
     }
 }
